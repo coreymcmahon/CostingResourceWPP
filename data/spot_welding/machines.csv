@@ -1,0 +1,3 @@
+id,name,manufacturer,size,machine_image,process_video,cost_per_hour
+1,"Esab",400,"manualspotwelder.jpg","http://www.youtube.com/watch?v=_kdnEBaAI78",32
+2,"Robotic spot welder","Motorman",1600,"robotspotwelder.jpg","http://www.youtube.com/watch?v=-vCxkphKb_Y",91
