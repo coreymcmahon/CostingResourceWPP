@@ -18,6 +18,14 @@ class CsvData extends \CostingResource\CsvData implements DataInterface {
 
 		$this->dataPath = __DIR__ . '/../../../data/spot_welding/';
 	}
+
+	public function findMachine($id)
+	{
+		foreach ($this->getMachines() as $machine) {
+			if ($machine->id == $id) return $machine;
+		}
+		return null;
+	}
 	
 	public function getMachines()
 	{
@@ -25,6 +33,14 @@ class CsvData extends \CostingResource\CsvData implements DataInterface {
 			$this->machines = $this->readCsv(realpath($this->dataPath . 'machines.csv'));
 
 		return $this->machines;
+	}
+
+	public function findCountry($id)
+	{
+		foreach ($this->getCountries() as $country) {
+			if ($country->id == $id) return $country;
+		}
+		return null;
 	}
 
 	public function getCountries()

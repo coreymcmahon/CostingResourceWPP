@@ -95,6 +95,12 @@ class Calculator implements CalculatorInterface {
 		return $this->data->getAverageDistanceBetweenFeatures();
 	}
 
+	public function validate(array $data)
+	{
+		// @TODO: implement this 
+		return true;
+	}
+
 	public function calculate(array $data)
 	{
 		$materialId = $data['material_id']; 
