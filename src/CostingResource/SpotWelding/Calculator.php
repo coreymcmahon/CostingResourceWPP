@@ -26,15 +26,16 @@ class Calculator implements CalculatorInterface {
 		
 		// optional
 		$country = $this->data->findCountry(isset($data['country_id']) ? $data['country_id'] : 1);
-		$machine = $this->data->findMachine(isset($data['machine_id']) ? $data['machine_id'] : 1);
+		
+		//$machine = $this->data->findMachine(isset($data['machine_id']) ? $data['machine_id'] : 1);
+		$machine = $this->data->findMachine($isRobotic ? 2 : 1);
+		
 		$loadQuantities = isset($data['load_quantities']) ? $data['load_quantities'] : array(0, 0, 0);
 		$unloadQuantities = isset($data['unload_quantities']) ? $data['unload_quantities'] : array(0, 0, 0);
 
 		$settings = $this->data->getSettings();
 
 		$loadUnloadTime = $this->calculateLoadUnloadTime($loadQuantities, $unloadQuantities);
-
-		$cycleTime = 0; // @TODO: calculate this properly
 
 		if ($isRobotic) {
 
@@ -56,6 +57,14 @@ class Calculator implements CalculatorInterface {
 			$totalTime = $loadUnloadTime + $weldTime;
 		}
 
+		$cycleTime = $totalTime / 60.0;
+
+		$labourCost = ($country->labour_cost_rate / 60.0) * $cycleTime;
+		$machineCost = ($machine->rate / 60.0) * $cycleTime;
+		$overheads = ($labourCost + $machineCost) * (1.0 + $country->overheads);
+		$profit = ($labourCost + $machineCost) * (1.0 + $country->profit);
+		$price = $labourCost + $machineCost + $overheads + $profit;
+
 		return [
 			'result' => [
 				'loading_unloading' => $loadUnloadTime,
@@ -63,7 +72,7 @@ class Calculator implements CalculatorInterface {
 				'weld_time' => $weldTime,
 				'controlling_cycle' => $controllingCycle,
 				'total_time' => $totalTime,
-				'cycle_time' => 0.00,
+				'cycle_time' => $cycleTime,
 				'machine' => [
 					'id' => $machine->id,
 					'name' => $machine->name,
@@ -79,11 +88,11 @@ class Calculator implements CalculatorInterface {
 					'labour_rate' => $country->labour_cost_rate,
 				],
 				'costs' => [
-					'labour' => ($country->labour_cost_rate / 60.0) * $cycleTime,
-					'machine' => ($machine->rate / 60.0) * $cycleTime,
-					'overheads' => 0.00, // =(D17+D19)*(1+VLOOKUP(D7,P6:S7,3,FALSE))
-					'profit' => 0.00, // =(D17+D19)*(1+VLOOKUP(D7,P6:S7,4,FALSE))
-					'price' => 0.00, // =SUM(D17:D26)
+					'labour' => $labourCost,
+					'machine' => $machineCost,
+					'overheads' => $overheads, 
+					'profit' => $profit, 
+					'price' => $price, 
 				],
 			],
 		];

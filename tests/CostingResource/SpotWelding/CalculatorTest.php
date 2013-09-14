@@ -103,30 +103,30 @@ class CalculatorTest extends \TestCase {
 		$result = $this->calculator->calculate($data);
 
 		// root level attributes
-		$this->assertEquals(23.4,  $result['result']['loading_unloading']);
-		$this->assertEquals(4.8,   $result['result']['robot_addr_in_out']);
-		$this->assertEquals(39.6,  $result['result']['weld_time']);
-		$this->assertEquals(44.4,  $result['result']['controlling_cycle']);
-		$this->assertEquals(44.4, $result['result']['total_time']);
-		$this->assertEquals(0.74,  $result['result']['cycle_time']);
+		$this->assertEquals(23.40, round($result['result']['loading_unloading'], 2));
+		$this->assertEquals(4.80,  round($result['result']['robot_addr_in_out'], 2));
+		$this->assertEquals(39.60, round($result['result']['weld_time'], 2));
+		$this->assertEquals(44.40, round($result['result']['controlling_cycle'], 2));
+		$this->assertEquals(44.40, round($result['result']['total_time'], 2));
+		$this->assertEquals(0.74,  round($result['result']['cycle_time'], 2));
 		// machine attributes
-		$this->assertEquals(0, $result['result']['machine']['id']);
+		$this->assertEquals(2, $result['result']['machine']['id']);
 		$this->assertEquals('Robotic Spot Welder', $result['result']['machine']['name']);
 		$this->assertEquals('Motorman', $result['result']['machine']['manufacturer']);
 		$this->assertEquals(1600, $result['result']['machine']['size']);
-		$this->assertEquals('', $result['result']['machine']['image']); // @TODO: store image and display it here
-		$this->assertEquals('http://www.youtube.com/watch?v=_kdnEBaAI78', $result['result']['machine']['video']);
-		$this->assertEquals(91.0, $result['result']['machine']['rate']);
+		$this->assertEquals('robotspotwelder.jpg', $result['result']['machine']['image']); // @TODO: store image and display it here
+		$this->assertEquals('http://www.youtube.com/watch?v=-vCxkphKb_Y', $result['result']['machine']['video']);
+		$this->assertEquals(91.00, round($result['result']['machine']['rate'], 2));
 		// country attributes
-		$this->assertEquals(0, $result['result']['country']['id']);
+		$this->assertEquals(1, $result['result']['country']['id']);
 		$this->assertEquals('UK', $result['result']['country']['name']);
-		$this->assertEquals(20.0, $result['result']['country']['labour_rate']);
+		$this->assertEquals(20.00, round($result['result']['country']['labour_rate'], 2));
 		// cost attributes
-		$this->assertEquals(0.25, $result['result']['costs']['labour']);
-		$this->assertEquals(1.12, $result['result']['costs']['machine']);
-		$this->assertEquals(1.99, $result['result']['costs']['overheads']);
-		$this->assertEquals(1.67, $result['result']['costs']['profit']);
-		$this->assertEquals(5.02, $result['result']['costs']['price']);
+		$this->assertEquals(0.25, round($result['result']['costs']['labour'], 2));
+		$this->assertEquals(1.12, round($result['result']['costs']['machine'], 2));
+		$this->assertEquals(1.99, round($result['result']['costs']['overheads'], 2));
+		$this->assertEquals(1.67, round($result['result']['costs']['profit'], 2));
+		$this->assertEquals(5.02, round($result['result']['costs']['price'], 2));
 	}
 
 	public function testCalculateReturnsCorrectValuesForManualWelding()
@@ -145,17 +145,24 @@ class CalculatorTest extends \TestCase {
 		// root level attributes
 		$this->assertEquals(null, $result['result']['robot_addr_in_out']);
 		$this->assertEquals(null, $result['result']['controlling_cycle']);
-		$this->assertEquals(47.7,  $result['result']['weld_time']);
-		$this->assertEquals(71.10, $result['result']['total_time']);
-		$this->assertEquals(1.19, $result['result']['cycle_time']);
-		// machine attributes same as previous test.
+		$this->assertEquals(47.70, round($result['result']['weld_time'], 2));
+		$this->assertEquals(71.10, round($result['result']['total_time'], 2));
+		$this->assertEquals(1.19,  round($result['result']['cycle_time'], 2));
+		// machine attributes
+		$this->assertEquals(1, $result['result']['machine']['id']);
+		$this->assertEquals('Manual Spot Welder', $result['result']['machine']['name']);
+		$this->assertEquals('Esab', $result['result']['machine']['manufacturer']);
+		$this->assertEquals(400, $result['result']['machine']['size']);
+		$this->assertEquals('manualspotwelder.jpg', $result['result']['machine']['image']); // @TODO: store image and display it here
+		$this->assertEquals('http://www.youtube.com/watch?v=_kdnEBaAI78', $result['result']['machine']['video']);
+		$this->assertEquals(32.0, round($result['result']['machine']['rate'], 2));
 		// country attributes same as previous test.
 		// cost attributes
-		$this->assertEquals(0.40, $result['result']['costs']['labour']);
-		$this->assertEquals(1.80, $result['result']['costs']['machine']);
-		$this->assertEquals(3.18, $result['result']['costs']['overheads']);
-		$this->assertEquals(2.67, $result['result']['costs']['profit']);
-		$this->assertEquals(8.05, $result['result']['costs']['price']);
+		$this->assertEquals(0.40, round($result['result']['costs']['labour'], 2));
+		$this->assertEquals(0.63, round($result['result']['costs']['machine'], 2));
+		$this->assertEquals(1.49, round($result['result']['costs']['overheads'], 2));
+		$this->assertEquals(1.25, round($result['result']['costs']['profit'], 2));
+		$this->assertEquals(3.77, round($result['result']['costs']['price'], 2));
 	}
 
 }
