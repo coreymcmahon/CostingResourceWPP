@@ -16,7 +16,7 @@ class CsvData extends \CostingResource\CsvData implements DataInterface {
 	private $settingsData;
 	private $startHolesData;
 
-	public function __construct(array $csvs)
+	public function __construct(array $csvs = null)
 	{
 		if ($csvs !== null) {
 			$this->countriesData = $this->readCsvString($csvs['countries']);
@@ -26,7 +26,8 @@ class CsvData extends \CostingResource\CsvData implements DataInterface {
 			$this->settingsData = $this->readCsvString($csvs['settings']);
 			$this->startHolesData = $this->readCsvString($csvs['start_holes']);
 		}
-		// @TODO: maybe need to load files in here?
+		
+		$this->dataPath = __DIR__ . '/../../../data/cutting/';
 	}
 
 	public function isDataPrepared() 
@@ -37,19 +38,19 @@ class CsvData extends \CostingResource\CsvData implements DataInterface {
 
 	public function getMaterials()
 	{
-		if ($this->materialsData === null) $this->materialsData = $this->readCsv(self::MATERIALS_CSV);
+		if ($this->materialsData === null) $this->materialsData = $this->readCsv($this->dataPath . self::MATERIALS_CSV);
 		return $this->materialsData;
 	}
 
 	public function getMachines()
 	{
-		if ($this->machinesData === null) $this->machinesData = $this->readCsv(self::MACHINES_CSV);
+		if ($this->machinesData === null) $this->machinesData = $this->readCsv($this->dataPath . self::MACHINES_CSV);
 		return $this->machinesData;
 	}
 
 	public function getCountries()
 	{
-		if ($this->countriesData === null) $this->countriesData = $this->readCsv(self::COUNTRIES_CSV);
+		if ($this->countriesData === null) $this->countriesData = $this->readCsv($this->dataPath . self::COUNTRIES_CSV);
 		return $this->countriesData;
 	}
 
@@ -82,7 +83,7 @@ class CsvData extends \CostingResource\CsvData implements DataInterface {
 
 	public function getLastCuttingSpeedEntryForMaterial($materialId)
 	{
-		if ($this->cuttingSpeedsData === null) $this->cuttingSpeedsData = $this->readCsv(self::CUTTING_SPEEDS_CSV);
+		if ($this->cuttingSpeedsData === null) $this->cuttingSpeedsData = $this->readCsv($this->dataPath . self::CUTTING_SPEEDS_CSV);
 		
 		$last = null;
 		foreach ($this->cuttingSpeedsData as $cuttingSpeed) {
@@ -99,7 +100,7 @@ class CsvData extends \CostingResource\CsvData implements DataInterface {
 
 	public function getStartHoleByMaterialAndThickness($materialId, $thickness)
 	{
-		if ($this->startHolesData === null) $this->startHolesData = $this->readCsv(self::START_HOLES_CSV);
+		if ($this->startHolesData === null) $this->startHolesData = $this->readCsv($this->dataPath . self::START_HOLES_CSV);
 
 		foreach ($this->startHolesData as $startHole) {
 			if ($startHole->material_id === $materialId && $startHole->thickness == $thickness) {
@@ -111,7 +112,7 @@ class CsvData extends \CostingResource\CsvData implements DataInterface {
 
 	public function getCuttingSpeedByMaterialAndThickness($materialId, $thickness)
 	{
-		if ($this->cuttingSpeedsData === null) $this->cuttingSpeedsData = $this->readCsv(self::CUTTING_SPEEDS_CSV);
+		if ($this->cuttingSpeedsData === null) $this->cuttingSpeedsData = $this->readCsv($this->dataPath . self::CUTTING_SPEEDS_CSV);
 		
 		foreach ($this->cuttingSpeedsData as $cuttingSpeed) {
 			if ($cuttingSpeed->material_id === $materialId && $cuttingSpeed->thickness == $thickness) {
@@ -123,7 +124,7 @@ class CsvData extends \CostingResource\CsvData implements DataInterface {
 
 	private function getSetting($key)
 	{
-		if ($this->settingsData === null) $this->settingsData = $this->readCsv(self::SETTINGS_CSV);
+		if ($this->settingsData === null) $this->settingsData = $this->readCsv($this->dataPath . self::SETTINGS_CSV);
 		foreach ($this->settingsData as $setting) {
 			if ($setting->key == $key) return $setting->value;
 		}
