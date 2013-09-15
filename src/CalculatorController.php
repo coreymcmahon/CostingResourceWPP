@@ -9,6 +9,15 @@ class CalculatorController {
 		$this->calculator = $calculator;
 	}
 
+	public function getIndex()
+	{
+		$namespace = (isset($_REQUEST['namespace']) ? $_REQUEST['namespace'] : 'cutting');
+		
+		return new \CalculatorView('index', array(
+			'namespace' => $namespace,
+		));
+	}
+
 	public function getCalculatorData()
 	{
 		return $this->calculator->getCalculatorData();

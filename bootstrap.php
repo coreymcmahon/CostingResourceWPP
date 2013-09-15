@@ -15,3 +15,4 @@ require __DIR__ . '/src/CostingResource/SpotWelding/CsvData.php';
 
 // miscellaneous
 require __DIR__ . '/src/CalculatorController.php';
+require __DIR__ . '/src/CalculatorView.php';
