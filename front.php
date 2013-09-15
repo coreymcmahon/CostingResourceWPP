@@ -7,6 +7,7 @@ require __DIR__ . '/bootstrap.php';
 $method = isset($_SERVER['REQUEST_METHOD']) ? strtoupper($_SERVER['REQUEST_METHOD']) : 'GET';
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'index';
 $namespace = isset($_REQUEST['namespace']) ? strtolower($_REQUEST['namespace']) : 'cutting';
+$method = strtolower($method) . ucfirst($action);
 
 // create an instance of the relevant calculator implementation
 switch ($namespace) {
@@ -17,22 +18,16 @@ switch ($namespace) {
 		$calculator = new CostingResource\SpotWelding\Calculator();
 		break;
 	default:
-		header("HTTP/1.0 400 Bad Request");
-		echo json_encode(array());
 		$namespace = null;
 		break;
 }
+$controller = new CalculatorController($calculator);
 
-if ($namespace) {
-	$controller = new CalculatorController($calculator);
-
-	// find the method to call and (if valid), run it
-	$method = strtolower($method) . ucfirst($action);
-
+if ($namespace && is_callable(array($controller, $method))) {
+	
 	if (is_callable(array($controller, $method))) {
 
 		$result = call_user_func_array(array($controller, $method), array());
-
 		header("HTTP/1.0 200 OK");
 
 		if (get_class($result) === 'CalculatorView') {
@@ -41,9 +36,8 @@ if ($namespace) {
 			echo json_encode($result);
 		}
 
-	} else {
-
-		header("HTTP/1.0 400 Bad Request");
-		echo json_encode(array());
 	}
+} else {
+	header("HTTP/1.0 400 Bad Request");
+	echo json_encode(array());
 }
