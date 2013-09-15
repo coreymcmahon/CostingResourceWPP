@@ -174,4 +174,13 @@ class Calculator implements CalculatorInterface {
 			),
 		);
 	}
+
+	public function getCalculatorData()
+	{
+		return (object)array(
+			'materials' => $this->getMaterials(),
+			'countries' => $this->getCountries(),
+			'machines'  => $this->getMachines(),
+		);
+	}
 }

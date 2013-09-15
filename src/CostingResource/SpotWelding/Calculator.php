@@ -109,4 +109,12 @@ class Calculator implements CalculatorInterface {
 
 		return $loadTime + $unloadTime;
 	}
+
+	public function getCalculatorData()
+	{
+		return (object)array(
+			'machines' => $this->data->getMachines(),
+			'countries' => $this->data->getCountries(),
+		);
+	}
 }

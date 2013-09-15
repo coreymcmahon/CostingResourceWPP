@@ -1,4 +1,4 @@
-id,"key","value"
+id,key,value
 1,"manipulation_speed","5000"
 2,"manipulation_start_end_distance","100"
 3,"average_distance_between_features","120"

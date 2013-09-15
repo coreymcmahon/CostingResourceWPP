@@ -1,3 +1,3 @@
-id,"name","manufacturer","size","image","youtube",cost_per_hour
+id,name,manufacturer,size,image,youtube,cost_per_hour
 1,"Small laser","Trumpf","1m x 1m bed","/wp-content/plugins/CM_LaserCuttingCalc/assets/images/trumpf-laser.jpg","c89Zx7YqqVc",60
 2,"Large laser","Amada","2m x 1m bed","/wp-content/plugins/CM_LaserCuttingCalc/assets/images/amada-laser.jpg","K-k6uEEpnxU",85

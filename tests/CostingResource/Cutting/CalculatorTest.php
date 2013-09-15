@@ -151,4 +151,51 @@ class CalculatorTest extends \TestCase {
 		$result = $this->calculator->calculate($data);
 		$this->assertEquals($manipulationSpeedOverride, $result['manipulation_speed']);
 	}
+
+	public function testGetCalculatorDataReturnsCorrectlyFormattedObject()
+	{
+		$result = $this->calculator->getCalculatorData();
+
+		$this->assertObjectHasAttribute('countries', $result);
+		$this->assertObjectHasAttribute('materials', $result);
+		$this->assertObjectHasAttribute('machines', $result);
+	}
+
+	public function testGetCalculatorDataReturnsCountries()
+	{
+		$result = $this->calculator->getCalculatorData();
+
+		$this->assertObjectHasAttribute('countries', $result);
+		$this->assertInternalType('array', $result->countries);
+		$this->assertObjectHasAttribute('id', $result->countries[0]);
+		$this->assertObjectHasAttribute('name', $result->countries[0]);
+		$this->assertObjectHasAttribute('labour_cost_rate', $result->countries[0]);
+		$this->assertObjectHasAttribute('overheads', $result->countries[0]);
+		$this->assertObjectHasAttribute('profit', $result->countries[0]);
+	}
+
+	public function testGetCalculatorDataReturnsMaterials()
+	{
+		$result = $this->calculator->getCalculatorData();
+
+		$this->assertObjectHasAttribute('materials', $result);
+		$this->assertInternalType('array', $result->materials);
+		$this->assertObjectHasAttribute('id', $result->materials[0]);
+		$this->assertObjectHasAttribute('name', $result->materials[0]);
+	}
+
+	public function testGetCalculatorDataReturnsMachines()
+	{
+		$result = $this->calculator->getCalculatorData();
+
+		$this->assertObjectHasAttribute('machines', $result);
+		$this->assertInternalType('array', $result->machines);
+		$this->assertObjectHasAttribute('id', $result->machines[0]);
+		$this->assertObjectHasAttribute('name', $result->machines[0]);
+		$this->assertObjectHasAttribute('manufacturer', $result->machines[0]);
+		$this->assertObjectHasAttribute('size', $result->machines[0]);
+		$this->assertObjectHasAttribute('image', $result->machines[0]);
+		$this->assertObjectHasAttribute('youtube', $result->machines[0]);
+		$this->assertObjectHasAttribute('cost_per_hour', $result->machines[0]);
+	}
 }

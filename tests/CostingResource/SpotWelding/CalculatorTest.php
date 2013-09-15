@@ -165,4 +165,40 @@ class CalculatorTest extends \TestCase {
 		$this->assertEquals(3.77, round($result['result']['costs']['price'], 2));
 	}
 
+	public function testGetCalculatorDataReturnsCorrectlyFormattedObject()
+	{
+		$result = $this->calculator->getCalculatorData();
+
+		$this->assertObjectHasAttribute('countries', $result);
+		$this->assertObjectHasAttribute('machines', $result);
+	}
+
+	public function testGetCalculatorDataReturnsCountries()
+	{
+		$result = $this->calculator->getCalculatorData();
+
+		$this->assertObjectHasAttribute('countries', $result);
+		$this->assertInternalType('array', $result->countries);
+		$this->assertObjectHasAttribute('id', $result->countries[0]);
+		$this->assertObjectHasAttribute('name', $result->countries[0]);
+		$this->assertObjectHasAttribute('labour_cost_rate', $result->countries[0]);
+		$this->assertObjectHasAttribute('overheads', $result->countries[0]);
+		$this->assertObjectHasAttribute('profit', $result->countries[0]);
+	}
+
+	public function testGetCalculatorDataReturnsMachines()
+	{
+		$result = $this->calculator->getCalculatorData();
+
+		$this->assertObjectHasAttribute('machines', $result);
+		$this->assertInternalType('array', $result->machines);
+		$this->assertObjectHasAttribute('id', $result->machines[0]);
+		$this->assertObjectHasAttribute('name', $result->machines[0]);
+		$this->assertObjectHasAttribute('manufacturer', $result->machines[0]);
+		$this->assertObjectHasAttribute('size', $result->machines[0]);
+		$this->assertObjectHasAttribute('image', $result->machines[0]);
+		$this->assertObjectHasAttribute('video', $result->machines[0]);
+		$this->assertObjectHasAttribute('rate', $result->machines[0]);
+	}
+
 }
