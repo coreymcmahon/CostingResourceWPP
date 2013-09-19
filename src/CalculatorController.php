@@ -15,6 +15,7 @@ class CalculatorController {
 		
 		return new \CalculatorView('index', array(
 			'namespace' => $namespace,
+			'calculatorData' => $this->calculator->getCalculatorData(),
 		));
 	}
 

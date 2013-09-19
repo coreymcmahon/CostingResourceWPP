@@ -2,6 +2,7 @@
 
 require __DIR__ . '/src/CostingResource/CalculatorInterface.php';
 require __DIR__ . '/src/CostingResource/CsvData.php';
+require __DIR__ . '/src/CostingResource/Settings.php';
 
 // laser cutting calculator
 require __DIR__ . '/src/CostingResource/Cutting/Calculator.php';

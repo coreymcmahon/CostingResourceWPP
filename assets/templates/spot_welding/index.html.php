@@ -14,3 +14,6 @@
         <?php include __DIR__ . '/costs.html.php'; ?>
     </div>
 </div>
+<script>
+    // @TODO: implement
+</script>
