@@ -1,3 +1,17 @@
+<!doctype html>
+<!-- @TODO: remove this -->
+<html>
+<head>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/css/jquery.loadmask.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="/assets/js/amcharts.js"></script>
+    <script src="/assets/js/jquery.loadmask.min.js"></script>
+</head>
+<body>
+<!-- end here -->
+
 <div id="costing_resource_calculator">
 	<select name="namespace" id="costing_resource_calculator_namespace">
 		
@@ -13,6 +27,30 @@
 	</div>
 </div>
 <script>
+    // tabs
+    $(function() {
+        $( "#cm-cutting-calculator-div" ).tabs();
+        costingResourceDisableTabs();
+    });
+
+    function costingResourceMask() {
+        $("#cm-cutting-calculator-div .calculator-tabs").mask("Loading...");
+    }
+
+    function costingResourceUnmask() {
+        $("#cm-cutting-calculator-div .calculator-tabs").unmask();
+    }
+
+    function costingResourceDisableTabs() {
+        $( "#cm-cutting-calculator-div" ).tabs( "option", "disabled", [ 1, 2 ] );
+        $( "#cm-cutting-calculator-div a" )[0].click();
+    }
+
+    function costingResourceEnableTabs() {
+        $( "#cm-cutting-calculator-div" ).tabs( "option", "disabled", [] );
+    }
+
+    // load data
 	var costingResourceCalculatorData = $.parseJSON('<?php echo json_encode($calculatorData); ?>');
 	$('#costing_resource_calculator_namespace').on('change', function (e) {
 		var namespace = $(e.target).val();
@@ -21,6 +59,7 @@
 		});
 	});
 
+    // charting
 	function costingResourceRenderChart(id, data) {
         if (data) { 
             chartData = [
@@ -60,3 +99,7 @@
         chart.write('' + id);
     }
 </script>
+
+<!-- @TODO: remove these as they'll appear in the header -->
+</body>
+</html>

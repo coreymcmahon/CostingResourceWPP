@@ -15,5 +15,21 @@
     </div>
 </div>
 <script>
-    // @TODO: implement
+    $(function () {
+        $('#calculate-button').on('click', function (e) {
+            var data = {
+                'material_id': parseInt($('#material_id').val()),
+                'thickness': parseInt($('#thickness').val()),
+                'length': parseInt($('#length').val()),
+                'holes': parseInt($('#holes').val()),
+            };
+
+            $.ajax({
+              type: "POST",
+              url: "front.php?action=calculate&namespace=cutting",
+              data: data,
+              success: function (data) { console.log(data); }
+            });
+        });
+    });
 </script>

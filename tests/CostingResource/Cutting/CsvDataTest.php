@@ -168,12 +168,27 @@ class CsvDataTest extends \TestCase {
 		$this->assertEquals(2.4, $this->csvData->getStartHoleByMaterialAndThickness($materialId, $thickness));
 	}
 
+	public function testGetStartHoleByMaterialAndThicknessForSteel()
+	{
+		$materialId = 1;
+		$thickness = 5;
+
+		$this->assertEquals(1.76, $this->csvData->getStartHoleByMaterialAndThickness($materialId, $thickness));
+	}
+
 	public function testGetCuttingSpeedByMaterialAndThickness()
 	{
 		$materialId = 2;
 		$thickness = 4;
 
 		$this->assertEquals(490, $this->csvData->getCuttingSpeedByMaterialAndThickness($materialId, $thickness));
+	}
+
+	public function testCuttingSpeedByMaterialAndThicknessForSteel()
+	{
+		$materialId = 1;
+		$thickness = 5;
+		$this->assertEquals(600, $this->csvData->getCuttingSpeedByMaterialAndThickness($materialId, $thickness));
 	}
 
 	public function testGetManipulationSpeed()

@@ -58,7 +58,7 @@ class CsvData extends \CostingResource\CsvData implements DataInterface {
 	{
 		$materials = $this->getMaterials();
 		foreach ($materials as $material) {
-			if ($material->id === $id) return $material;
+			if ($material->id == $id) return $material;
 		}
 		return null;
 	}
@@ -67,7 +67,7 @@ class CsvData extends \CostingResource\CsvData implements DataInterface {
 	{
 		$machines = $this->getMachines();
 		foreach($machines as $machine) {
-			if ($machine->id === $id) return $machine;
+			if ($machine->id == $id) return $machine;
 		}
 		return null;
 	}
@@ -76,18 +76,18 @@ class CsvData extends \CostingResource\CsvData implements DataInterface {
 	{
 		$countries = $this->getCountries();
 		foreach($countries as $country) {
-			if ($country->id === $id) return $country;
+			if ($country->id == $id) return $country;
 		}
 		return null;
 	}
 
 	public function getLastCuttingSpeedEntryForMaterial($materialId)
 	{
-		if ($this->cuttingSpeedsData === null) $this->cuttingSpeedsData = $this->readCsv($this->dataPath . self::CUTTING_SPEEDS_CSV);
+		if ($this->cuttingSpeedsData === null) $this->cuttingSpeedsData = $this->readCsv($this->dataPath . self::CUTTING_SPEEDS_CSV);		
 		
 		$last = null;
 		foreach ($this->cuttingSpeedsData as $cuttingSpeed) {
-			if ($cuttingSpeed->material_id === $materialId) {
+			if ($cuttingSpeed->material_id == $materialId) {
 				if ($last === null) {
 					$last = $cuttingSpeed;
 				} elseif($cuttingSpeed->thickness > $last->thickness) {
@@ -103,7 +103,7 @@ class CsvData extends \CostingResource\CsvData implements DataInterface {
 		if ($this->startHolesData === null) $this->startHolesData = $this->readCsv($this->dataPath . self::START_HOLES_CSV);
 
 		foreach ($this->startHolesData as $startHole) {
-			if ($startHole->material_id === $materialId && $startHole->thickness == $thickness) {
+			if ($startHole->material_id == $materialId && $startHole->thickness == $thickness) {
 				return $startHole->start_hole;
 			}
 		}
@@ -115,7 +115,7 @@ class CsvData extends \CostingResource\CsvData implements DataInterface {
 		if ($this->cuttingSpeedsData === null) $this->cuttingSpeedsData = $this->readCsv($this->dataPath . self::CUTTING_SPEEDS_CSV);
 		
 		foreach ($this->cuttingSpeedsData as $cuttingSpeed) {
-			if ($cuttingSpeed->material_id === $materialId && $cuttingSpeed->thickness == $thickness) {
+			if ($cuttingSpeed->material_id == $materialId && $cuttingSpeed->thickness == $thickness) {
 				return $cuttingSpeed->speed;
 			}
 		}

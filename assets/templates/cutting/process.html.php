@@ -5,7 +5,7 @@
             </td>
             <td class="field-value no-top-border">
                 <p class="show-mobile mobile-label">Material</p>
-                <select id="material" name="material" title="Select a material from the dropdown list" class="dark-yellow-bg first-inputs">
+                <select id="material_id" name="material_id" title="Select a material from the dropdown list" class="dark-yellow-bg first-inputs">
                 <?php foreach($calculatorData->materials as $material): ?>
                     <option value="<?php echo $material->id; ?>">
                         <?php echo $material->name; ?>

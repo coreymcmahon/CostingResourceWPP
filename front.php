@@ -30,7 +30,7 @@ if ($namespace && is_callable(array($controller, $method))) {
 		$result = call_user_func_array(array($controller, $method), array());
 		header("HTTP/1.0 200 OK");
 
-		if (get_class($result) === 'CalculatorView') {
+		if (gettype($result) === 'object' && get_class($result) === 'CalculatorView') {
 			echo $result->render();
 		} else {
 			echo json_encode($result);

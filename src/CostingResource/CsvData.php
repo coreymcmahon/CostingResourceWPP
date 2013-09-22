@@ -5,7 +5,9 @@ class CsvData {
 	public function readCsv($file)
 	{
 		// open the file and create an array where each element is a row
-		return $this->readCsvString(file_get_contents($file));
+		$str = file_get_contents($file);
+		$obj = $this->readCsvString($str);
+		return $obj;
 	}
 
 	public function readCsvString($string)
