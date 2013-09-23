@@ -21,29 +21,28 @@
                 'is_robotic': parseInt($('#is_robotic').val()),
                 'number_of_welds': parseInt($('#number_of_welds').val()),
                 'number_of_construction_welds': parseInt($('#number_of_construction_welds').val()),
-                //'country_id': parseInt(),
-                //'machine_id': parseInt(),
+                'country_id': parseInt($('#country_id').val()),
                 'load_quantities': $('#load_weight_1').val() + ',' + $('#load_weight_2').val() + ',' + $('#load_weight_3').val(),
                 'unload_quantities': $('#unload_weight_1').val() + ',' + $('#unload_weight_2').val() + ',' + $('#unload_weight_3').val()
             };
-
-            if (!costingResourceSpotWeldingCalculatorValidateData(data)) return;
-
-            costingResourceMask();
-
-            $.ajax({
-              type: "POST",
-              url: "front.php?action=calculate&namespace=spot_welding",
-              data: data,
-              success: function (data) { 
+            costingResourceSpotWeldingCalculatorCalculate(data);
+        });
+    });
+    function costingResourceSpotWeldingCalculatorCalculate(data) {
+        if (!costingResourceSpotWeldingCalculatorValidateData(data)) return;
+        costingResourceMask();
+        $.ajax({
+            type: "POST",
+            url: "front.php?action=calculate&namespace=spot_welding",
+            data: data,
+            success: function (data) { 
                 data = $.parseJSON(data); 
                 costingResourceSpotWeldingCalculatorPopulateData(data); 
                 costingResourceUnmask(); 
-                costingResourceEnableTabs(); }
-            });
+                costingResourceEnableTabs(); 
+            }
         });
-    });
-
+    }
     function costingResourceSpotWeldingCalculatorPopulateData(data) {
         data = data['result'];
         console.log(data);
@@ -54,6 +53,7 @@
         $('#controlling_cycle').val(data['controlling_cycle']);
         $('#total_time').val(data['total_time']);
         // machine
+        $('#machine_name').val(data['machine']['name']);
         $('#machine_manufacturer').val(data['machine']['manufacturer']);
         $('#machine_size').val(data['machine']['size']);
         $('#machine_rate').val(data['machine']['rate']);
@@ -71,9 +71,7 @@
         costingResourceRenderChart('chart', data['costs']);
         $('#machine_image').attr('src', '/assets/images/' + data['machine']['image']);
     }
-
-    function costingResourceSpotWeldingCalculatorValidateData(data)
-    {
+    function costingResourceSpotWeldingCalculatorValidateData(data) {
         // @TODO: implement
         return true;
     }

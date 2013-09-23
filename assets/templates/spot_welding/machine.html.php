@@ -1,17 +1,10 @@
 	<table class="no-top-border">
         <tr class="no-top-border">
             <td class="quarter-width field-label hide-mobile no-top-border">
-                <label for="machine-id" title="Select a machine from the dropdown list">Select Machine</label>
+                <label for="machine-id" title="Select a machine from the dropdown list">Method</label>
             </td>
             <td class="field-value no-top-border">
-                <p class="show-mobile mobile-label">Select Machine</p>
-                <select id="machine_id" name="machine_id" class="dark-yellow-bg">
-                <?php foreach($calculatorData->machines as $machine): ?>
-                <option value="<?php echo $machine->id; ?>">
-                    <?php echo $machine->name; ?>
-                </option>
-                <?php endforeach; ?>
-                </select>
+                <input autocomplete="off" name="machine_name" id="machine_name" type="text" readonly="readonly" class="calculator-field" />
             </td>
         </tr>
         <tr>
