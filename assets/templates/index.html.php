@@ -2,11 +2,11 @@
 <!-- @TODO: remove this -->
 <html>
 <head>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="/assets/css/jquery.loadmask.css">
     <link rel="stylesheet" href="/assets/css/styles.css">
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="/assets/js/amcharts.js"></script>
     <script src="/assets/js/jquery.loadmask.min.js"></script>
 </head>
@@ -37,6 +37,10 @@
         $( "#cm-calculator-div" ).tabs();
         costingResourceDisableTabs();
     });
+
+    function costingResourceAddErrorMessage($element, error) {
+        $element.parent().find('.error-text').html(error);
+    }
 
     function costingResourceMask() {
         $("#cm-calculator-div .calculator-tabs").mask("Loading...");

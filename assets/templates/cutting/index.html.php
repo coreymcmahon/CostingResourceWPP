@@ -84,9 +84,49 @@
         $('#machine-image').attr('src', '/assets/images/' + data['machine']['image']);
     }
 
-    function costingResourceCuttingCalculatorValidateData(data)
-    {
-        // @TODO: implement
-        return true;
+    function costingResourceCuttingCalculatorValidateData(data) {
+        $('#cm-calculator-div .error-text').html('');
+
+        var $materialId = $('#material_id'),
+            $thickness = $('#thickness'),
+            $length = $('#length'),
+            $holes = $('#holes'),
+            $cuttingSpeed = $('#cutting-speed-optional'),
+            $manipulationSpeed = $('#manipulation-speed-optional'),
+            validates = true,
+            maxThickness = costingResourceCalculatorData['max_thicknesses'][$('#material_id').val()];
+
+        if (!costingResourceIsValidPositiveFloat($thickness.val())) {
+            validates = false;
+            costingResourceAddErrorMessage($thickness, 'Numerical material thickness is required and must be a positive number');
+            $thickness.focus();
+        } else if (parseFloat($thickness.val()) > maxThickness) {
+            validates = false;
+            costingResourceAddErrorMessage($thickness, 'Please enter a value equal to or less than ' + maxThickness + 'mm.');
+            $thickness.focus();
+        }
+
+        if(!costingResourceIsValidPositiveFloat($length.val())) {
+            validates = false;
+            costingResourceAddErrorMessage($length, 'Length of cut is required and must be a positive number');
+            $length.focus();
+        }
+        if(!costingResourceIsValidPositiveInteger($holes.val())) {
+            validates = false;
+            costingResourceAddErrorMessage($holes, 'No of holes or apetures is required and must be a whole number');
+            $holes.focus();
+        }
+        if($cuttingSpeed.val() && !costingResourceIsValidPositiveFloat($cuttingSpeed.val())) {
+            validates = false;
+            costingResourceAddErrorMessage($cuttingSpeed, 'If used, cutting speed must be a positive number');
+            $cuttingSpeed.focus();
+        }
+        if($manipulationSpeed.val() && !costingResourceIsValidPositiveFloat($manipulationSpeed.val())) {
+            validates = false;
+            costingResourceAddErrorMessage($manipulationSpeed, 'If used, manipulation speed must be a positive number');
+            $manipulationSpeed.focus();
+        }
+
+        return validates;
     }
 </script>
