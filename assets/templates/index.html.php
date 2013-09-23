@@ -14,6 +14,7 @@
 <!-- end here -->
 
 <div id="costing_resource_calculator">
+<!-- 
 	<select name="namespace" id="costing_resource_calculator_namespace">
 		
 	<?php foreach (CostingResource\Settings::getNamespaces() as $key => $value): ?>
@@ -23,6 +24,7 @@
 	<?php endforeach; ?>
 
 	</select>
+-->
 	<div id="costing_resource_calculator_panel">
 	<?php include __DIR__ . '/' . $namespace . '/index.html.php'; ?>
 	</div>
@@ -144,7 +146,7 @@
         };
 
         chart.dataProvider = chartData;
-        //chart.write(id);
+        chart.write(id);
 
         $('#cm-calculator-div').off('tabsactivate');
         $('#cm-calculator-div').on('tabsactivate', function (e) { chart.write(id); });

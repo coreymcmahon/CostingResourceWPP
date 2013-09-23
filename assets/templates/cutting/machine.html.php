@@ -47,7 +47,7 @@
             </td>
             <td class="field-value">
                 <p class="show-mobile mobile-label">Process video</p>
-                <div class="calculator-field" id="machine-video"></div>
+                <div class="calculator-field" id="machine_video"></div>
             </td>
         </tr>
         <tr>

@@ -1,4 +1,4 @@
-#cm-calculator-div { padding: 10px; position: relative; }
+#cm-calculator-div { padding: 10px; position: relative; font-size: 12px; }
 #cm-calculator-div .strong { font-weight: bold; }
 #cm-calculator-div td { padding: 10px; }
 #cm-calculator-div p.maximum-thickness-text  { color: #000000; margin: 0; padding: 0; }

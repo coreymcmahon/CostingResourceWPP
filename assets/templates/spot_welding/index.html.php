@@ -16,32 +16,40 @@
 </div>
 <script>
     $(function () {
-        $('#calculate-button').on('click', function (e) {
-            var data = {
-                'is_robotic': parseInt($('#is_robotic').val()),
-                'number_of_welds': parseInt($('#number_of_welds').val()),
-                'number_of_construction_welds': parseInt($('#number_of_construction_welds').val()),
-                'country_id': parseInt($('#country_id').val()),
-                'load_quantities': $('#load_weight_1').val() + ',' + $('#load_weight_2').val() + ',' + $('#load_weight_3').val(),
-                'unload_quantities': $('#unload_weight_1').val() + ',' + $('#unload_weight_2').val() + ',' + $('#unload_weight_3').val()
-            };
-            costingResourceSpotWeldingCalculatorCalculate(data);
-        });
+        $('#calculate-button').on('click', costingResourceSpotWeldingCalculatorCalculate);
+        $('#country_id').on('change', costingResourceSpotWeldingCalculatorCalculate);
     });
-    function costingResourceSpotWeldingCalculatorCalculate(data) {
+
+    function costingResourceSpotWeldingCalculatorError() {
+        alert('An error occurred while trying to perform the calculation.');
+        costingResourceDisableTabs(); 
+        costingResourceUnmask();
+    }
+
+    function costingResourceSpotWeldingCalculatorCalculate() {
+        var data = {
+            'is_robotic': parseInt($('#is_robotic').val()),
+            'number_of_welds': parseInt($('#number_of_welds').val()),
+            'number_of_construction_welds': parseInt($('#number_of_construction_welds').val()),
+            'country_id': parseInt($('#country_id').val()),
+            'load_quantities': $('#load_weight_1').val() + ',' + $('#load_weight_2').val() + ',' + $('#load_weight_3').val(),
+            'unload_quantities': $('#unload_weight_1').val() + ',' + $('#unload_weight_2').val() + ',' + $('#unload_weight_3').val()
+        };
+
         if (!costingResourceSpotWeldingCalculatorValidateData(data)) return;
         costingResourceMask();
         $.ajax({
             type: "POST",
             url: "front.php?action=calculate&namespace=spot_welding",
-            data: data,
-            success: function (data) { 
-                data = $.parseJSON(data); 
-                costingResourceSpotWeldingCalculatorPopulateData(data); 
-                costingResourceUnmask(); 
-                costingResourceEnableTabs(); 
-            }
-        });
+            data: data
+        }).success(function (data) { 
+            data = $.parseJSON(data); 
+            if (data == null) return costingResourceSpotWeldingCalculatorError();
+            
+            costingResourceSpotWeldingCalculatorPopulateData(data); 
+            costingResourceUnmask(); 
+            costingResourceEnableTabs(); 
+        }).error(costingResourceSpotWeldingCalculatorError);
     }
     function costingResourceSpotWeldingCalculatorPopulateData(data) {
         data = data['result'];
