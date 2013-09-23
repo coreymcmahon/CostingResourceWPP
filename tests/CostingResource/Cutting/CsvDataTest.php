@@ -69,7 +69,7 @@ class CsvDataTest extends \TestCase {
 		$actual[0]->name = 'Small laser';
 		$actual[0]->manufacturer = 'Trumpf';
 		$actual[0]->size = '1m x 1m bed';
-		$actual[0]->image = '/wp-content/plugins/CM_LaserCuttingCalc/assets/images/trumpf-laser.jpg';
+		$actual[0]->image = 'trumpf-laser.jpg';
 		$actual[0]->youtube = 'c89Zx7YqqVc';
 		$actual[0]->cost_per_hour = 60;
 		$actual[1] = new \stdClass;
@@ -77,7 +77,7 @@ class CsvDataTest extends \TestCase {
 		$actual[1]->name = 'Large laser';
 		$actual[1]->manufacturer = 'Amada';
 		$actual[1]->size = '2m x 1m bed';
-		$actual[1]->image = '/wp-content/plugins/CM_LaserCuttingCalc/assets/images/amada-laser.jpg';
+		$actual[1]->image = 'amada-laser.jpg';
 		$actual[1]->youtube = 'K-k6uEEpnxU';
 		$actual[1]->cost_per_hour = 85;
 
@@ -128,7 +128,7 @@ class CsvDataTest extends \TestCase {
 		$expected->name = 'Large laser';
 		$expected->manufacturer = 'Amada';
 		$expected->size = '2m x 1m bed';
-		$expected->image = '/wp-content/plugins/CM_LaserCuttingCalc/assets/images/amada-laser.jpg';
+		$expected->image = 'amada-laser.jpg';
 		$expected->youtube = 'K-k6uEEpnxU';
 		$expected->cost_per_hour = 85;
 

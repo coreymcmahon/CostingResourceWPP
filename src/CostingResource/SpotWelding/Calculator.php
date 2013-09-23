@@ -30,8 +30,8 @@ class Calculator implements CalculatorInterface {
 		//$machine = $this->data->findMachine(isset($data['machine_id']) ? $data['machine_id'] : 1);
 		$machine = $this->data->findMachine($isRobotic ? 2 : 1);
 		
-		$loadQuantities = isset($data['load_quantities']) ? $data['load_quantities'] : array(0, 0, 0);
-		$unloadQuantities = isset($data['unload_quantities']) ? $data['unload_quantities'] : array(0, 0, 0);
+		$loadQuantities = isset($data['load_quantities']) ? explode(',', $data['load_quantities']) : array(0, 0, 0);
+		$unloadQuantities = isset($data['unload_quantities']) ? explode(',', $data['unload_quantities']) : array(0, 0, 0);
 
 		$settings = $this->data->getSettings();
 
@@ -67,12 +67,12 @@ class Calculator implements CalculatorInterface {
 
 		return [
 			'result' => [
-				'loading_unloading' => $loadUnloadTime,
-				'robot_addr_in_out' => $robotAddrInOut,
-				'weld_time' => $weldTime,
-				'controlling_cycle' => $controllingCycle,
-				'total_time' => $totalTime,
-				'cycle_time' => $cycleTime,
+				'loading_unloading' => round($loadUnloadTime, 2),
+				'robot_addr_in_out' => round($robotAddrInOut, 2),
+				'weld_time' => round($weldTime, 2),
+				'controlling_cycle' => round($controllingCycle, 2),
+				'total_time' => round($totalTime, 2),
+				'cycle_time' => round($cycleTime, 2),
 				'machine' => [
 					'id' => $machine->id,
 					'name' => $machine->name,
@@ -80,19 +80,19 @@ class Calculator implements CalculatorInterface {
 					'size' => $machine->size,
 					'image' => $machine->image,
 					'video' => $machine->video,
-					'rate' => $machine->rate,
+					'rate' => round($machine->rate, 2),
 				],
 				'country' => [
 					'id' => $country->id,
 					'name' => $country->name,
-					'labour_rate' => $country->labour_cost_rate,
+					'labour_rate' => round($country->labour_cost_rate, 2),
 				],
 				'costs' => [
-					'labour' => $labourCost,
-					'machine' => $machineCost,
-					'overheads' => $overheads, 
-					'profit' => $profit, 
-					'price' => $price, 
+					'labour' => round($labourCost, 2),
+					'machine' => round($machineCost, 2),
+					'overheads' => round($overheads, 2),
+					'profit' => round($profit, 2),
+					'price' => round($price, 2),
 				],
 			],
 		];
@@ -116,5 +116,24 @@ class Calculator implements CalculatorInterface {
 			'machines' => $this->data->getMachines(),
 			'countries' => $this->data->getCountries(),
 		);
+	}
+
+	public function getPostData(array $post = array())
+	{
+		return array(
+			'is_robotic' => $this->post($post, 'is_robotic'),
+			'number_of_welds' => $this->post($post, 'number_of_welds'),
+			'number_of_construction_welds' => $this->post($post, 'number_of_construction_welds'),
+			'country_id' => $this->post($post, 'country_id'),
+			'machine_id' => $this->post($post, 'machine_id'),
+			'load_quantities' => $this->post($post, 'load_quantities'),
+			'unload_quantities' => $this->post($post, 'unload_quantities'),
+		);
+	}
+
+	protected function post($post = array(), $key, $default = null)
+	{
+		if(isset($post[$key])) return $post[$key];
+		return $default;	
 	}
 }

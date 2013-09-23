@@ -1,0 +1,113 @@
+#cm-calculator-div { padding: 10px; position: relative; }
+#cm-calculator-div .strong { font-weight: bold; }
+#cm-calculator-div td { padding: 10px; }
+#cm-calculator-div p.maximum-thickness-text  { color: #000000; margin: 0; padding: 0; }
+#cm-calculator-div p.error-text { color: #ff0000; margin: 0; padding: 0; }
+#chart { width: 500px; height: 300px; padding-top: 50px; }
+
+#cm-calculator-div table { padding: 0; margin: 0; }
+#cm-calculator-div .half-width { width: 50%; }
+#cm-calculator-div .third-width { width: 33%; }
+#cm-calculator-div .quarter-width { width: 25%; }
+#cm-calculator-div small { display: block; margin-left: 15px; }
+#cm-calculator-div .field-label { vertical-align: top; }
+#cm-calculator-div .field-value {  }
+#cm-calculator-div .clear { clear: both; }
+
+#chart-div { position: absolute; margin-left: 308px; top: 42px; }
+#cm-calculator-div .no-borders { border: 0; }
+#cm-calculator-div .no-top-border { border-top: 0; }
+#cm-calculator-div .green-bg { background-color: rgb(31,183,20); }
+#cm-calculator-div .yellow-bg { background-color: rgb(252,243,5); }
+#cm-calculator-div .dark-yellow-bg { background-color: rgb(240,192,0); }
+#cm-calculator-div .light-blue { background-color: rgb(204,204,255); }
+
+#cm-calculator-div .green-bg::-webkit-input-placeholder { /* WebKit browsers */ color: #fff; font-style: italic; }
+#cm-calculator-div .green-bg:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ color: #fff; font-style: italic; }
+#cm-calculator-div .green-bg::-moz-placeholder { /* Mozilla Firefox 19+ */ color: #fff; font-style: italic; }
+#cm-calculator-div .green-bg:-ms-input-placeholder { /* Internet Explorer 10+ */ color: #fff; font-style: italic; }
+
+#cm-calculator-div input {
+    border-radius: 3px;
+    border: 1px solid rgb(204, 204, 204);
+    border-collapse: collapse;
+    color: rgb(0, 0, 0);
+    cursor: auto;
+    font-size: 11px;
+    height: 15px;
+    margin: 2px;
+    padding: 6px;
+    width: 144px;
+}
+#cm-calculator-div select { background: transparent; border: 0; line-height: 1; cursor: pointer; }
+#cm-calculator-div select {
+    width: 144px;
+    height: 27px;
+    padding: 2px 6px 2px 6px;
+    border: 1px solid #000;
+    
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: normal;
+
+    border-radius: 3px;
+    border-color: rgb(204, 204, 204);
+    box-sizing: content-box;
+    -ms-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; 
+    overflow: hidden;
+    background: url('../images/arrow.png') no-repeat right;
+}
+#cm-calculator-div .btn-red, #cm-calculator-div .btn-red:hover {
+    background: none !important;
+    border-color: rgb(255,31,23) !important;
+    background-color: rgb(255,31,23) !important;
+    color: #fff !important;
+}
+#cm-calculator-div .btn-blue, #cm-calculator-div .btn-blue:hover {
+    background: none !important;
+    border-color: rgb(93,150,197) !important;
+    background-color: rgb(93,150,197) !important;
+    color: #fff !important;
+} 
+#machine_video {
+    position: relative;
+}
+#machine_video a {
+    display: block;
+    width: 360px;
+    height: 202px;
+}
+#cm-calculator-div i.youtube-icon {
+    position: absolute;
+    display: block;
+    background-image: url('../images/youtube-play-button.png');
+    width: 63px;
+    height: 43px;
+    top: 80px;
+    left: 150px;
+}
+#chart-legend span, #chart-legend .legend-value { color: black; font-size: 10px; }
+#chart-legend table, #chart-legend table tr, #chart-legend table td { border: 0; margin: 0; padding: 0; }
+#chart-legend table { width: 70%; margin: 0 auto 0 auto; }
+#chart-legend i { width: 16px; height: 16px; background-color: #5C94C3; position: absolute; margin-top: 3px; }
+#chart-legend .legend-label { margin-left: 22px; }
+#chart-legend .blue { background-color: #5C94C3; }
+#chart-legend .red { background-color: #CF6460; }
+#chart-legend .green { background-color: #A6C275; }
+#chart-legend .purple { background-color: #937AAC; }
+#chart-legend table td.empty { width: 25px; }
+#chart-legend .legend-value { text-align: right; padding-right: 25px; }
+
+/* mobile styles */
+#cm-calculator-div .mobile-label { margin: 0; padding: 0; margin-bottom: 5px; }
+#cm-calculator-div .show-mobile { display: none; }
+@media screen and (min-width: 0px) and (max-width: 700px) {
+    #cm-calculator-div .hide-mobile { display: none; }
+    #cm-calculator-div .show-mobile { display: block; } 
+}
+@media screen and (min-width: 701px) and (max-width: 830px) {
+    #chart { width: 350px; }
+    #chart-legend { display: none; }
+}

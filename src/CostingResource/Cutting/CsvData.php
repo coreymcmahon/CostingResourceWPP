@@ -110,6 +110,23 @@ class CsvData extends \CostingResource\CsvData implements DataInterface {
 		return null;
 	}
 
+	public function getMaxThicknesses()
+	{
+		if ($this->cuttingSpeedsData === null) $this->cuttingSpeedsData = $this->readCsv($this->dataPath . self::CUTTING_SPEEDS_CSV);
+
+		$maxThicknesses = array();
+		foreach ($this->cuttingSpeedsData as $startHole) {
+			if (!isset($maxThicknesses[$startHole->material_id])) {
+				$maxThicknesses[$startHole->material_id] = $startHole->thickness;
+			} else {
+				if ($startHole->thickness > $maxThicknesses[$startHole->material_id])
+					$maxThicknesses[$startHole->material_id] = $startHole->thickness;
+			}
+		}
+
+		return $maxThicknesses;
+	}
+
 	public function getCuttingSpeedByMaterialAndThickness($materialId, $thickness)
 	{
 		if ($this->cuttingSpeedsData === null) $this->cuttingSpeedsData = $this->readCsv($this->dataPath . self::CUTTING_SPEEDS_CSV);

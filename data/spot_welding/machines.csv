@@ -1,3 +1,3 @@
 id,name,manufacturer,size,image,video,rate
-1,"Manual Spot Welder","Esab",400,"manualspotwelder.jpg","http://www.youtube.com/watch?v=_kdnEBaAI78",32
-2,"Robotic Spot Welder","Motorman",1600,"robotspotwelder.jpg","http://www.youtube.com/watch?v=-vCxkphKb_Y",91
+1,"Manual Spot Welder","Esab",400,"manualspotwelder.jpg","_kdnEBaAI78",32
+2,"Robotic Spot Welder","Motorman",1600,"robotspotwelder.jpg","-vCxkphKb_Y",91

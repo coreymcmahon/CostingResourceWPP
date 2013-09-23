@@ -95,6 +95,11 @@ class Calculator implements CalculatorInterface {
 		return $this->data->getAverageDistanceBetweenFeatures();
 	}
 
+	public function getMaxThicknesses()
+	{
+		return $this->data->getMaxThicknesses();
+	}
+
 	public function validate(array $data)
 	{
 		// @TODO: implement this 
@@ -166,8 +171,8 @@ class Calculator implements CalculatorInterface {
 				'labour_cost_rate'  => round($countryObj->labour_cost_rate, 2),
 				'machine_cost_rate' => round($machineObj->cost_per_hour, 2),
 				'cycle_time'        => round($cycleTime, 2),
-				'labour_cost'       => round($labourCost, 2),
-				'machine_cost'      => round($machineCost, 2),
+				'labour'       => round($labourCost, 2),
+				'machine'      => round($machineCost, 2),
 				'overheads'         => round($overheads, 2),
 				'profit'            => round($profit, 2),
 				'price'             => round($price, 2),
@@ -181,6 +186,27 @@ class Calculator implements CalculatorInterface {
 			'materials' => $this->getMaterials(),
 			'countries' => $this->getCountries(),
 			'machines'  => $this->getMachines(),
+			'max_thicknesses' => $this->getMaxThicknesses(),
 		);
+	}
+
+	public function getPostData(array $post = array())
+	{
+		return array(
+			'material_id' => $this->post($post, 'material_id'),
+			'thickness' => $this->post($post, 'thickness'),
+			'length' => $this->post($post, 'length'),
+			'holes' => $this->post($post, 'holes'),
+			'machine_id' => $this->post($post, 'machine_id'),
+			'country_id' => $this->post($post, 'country_id'),
+			'cutting_speed' => $this->post($post, 'cutting_speed'),
+			'manipulation_speed' => $this->post($post, 'manipulation_speed'),
+		);
+	}
+
+	protected function post($post = array(), $key, $default = null)
+	{
+		if(isset($post[$key])) return $post[$key];
+		return $default;	
 	}
 }

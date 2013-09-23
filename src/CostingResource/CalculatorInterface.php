@@ -9,4 +9,6 @@ interface CalculatorInterface {
 	public function validate(array $data);
 
 	public function calculate(array $data);
+
+	public function getPostData(array $post);
 }

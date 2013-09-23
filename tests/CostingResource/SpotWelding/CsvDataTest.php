@@ -80,12 +80,12 @@ class CsvDataTest extends \TestCase {
 	{
 		$machines = $this->data->getMachines();
 
-		$this->assertEquals($machines[1]->name, 'Robotic spot welder');
+		$this->assertEquals(strtolower($machines[1]->name), 'robotic spot welder');
 		$this->assertEquals($machines[1]->manufacturer, 'Motorman');
 		$this->assertEquals($machines[1]->size, 1600);
-		$this->assertEquals($machines[1]->machine_image, 'robotspotwelder.jpg');
-		$this->assertEquals($machines[1]->process_video, 'http://www.youtube.com/watch?v=-vCxkphKb_Y');
-		$this->assertEquals($machines[1]->cost_per_hour, 91);
+		$this->assertEquals($machines[1]->image, 'robotspotwelder.jpg');
+		$this->assertEquals($machines[1]->video, '-vCxkphKb_Y');
+		$this->assertEquals($machines[1]->rate, 91);
 	}
 
 	public function testParseValue()
