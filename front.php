@@ -9,19 +9,11 @@ $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'index';
 $namespace = isset($_REQUEST['namespace']) ? strtolower($_REQUEST['namespace']) : 'cutting';
 $method = strtolower($method) . ucfirst($action);
 
+
 // create an instance of the relevant calculator implementation
-switch ($namespace) {
-	case 'cutting':
-		$calculator = new CostingResource\Cutting\Calculator();
-		break;
-	case 'spot_welding':
-		$calculator = new CostingResource\SpotWelding\Calculator();
-		break;
-	default:
-		$namespace = null;
-		break;
-}
+$calculator = CostingResource\Settings::getCalculatorInstanceFor($namespace);
 $controller = new CalculatorController($calculator);
+
 
 if ($namespace && is_callable(array($controller, $method))) {
 	
