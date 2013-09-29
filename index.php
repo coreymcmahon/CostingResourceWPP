@@ -41,7 +41,7 @@ function cm_costing_resource_shorttag($atts)
 		<script>
 		(function ($) {
 			$(function () {
-				$.get('front.php').success(function (data) {
+				$.get('<?php plugins_url('front.php', __FILE__); ?>').success(function (data) {
 					$('#costing-resource-container').html(data);
 				});
 			});
