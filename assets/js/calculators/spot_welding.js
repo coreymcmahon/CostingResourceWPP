@@ -1,3 +1,8 @@
+var costingResourceSpotWeldingCalculatorError,
+costingResourceSpotWeldingCalculatorCalculate,
+costingResourceSpotWeldingCalculatorPopulateData,
+costingResourceSpotWeldingCalculatorValidateData;
+
 (function ($) {
 	function costingResourceSpotWeldingCalculatorError() {
 		alert('An error occurred while trying to perform the calculation.');

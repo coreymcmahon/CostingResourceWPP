@@ -1,26 +1,36 @@
+var costingResourceAddErrorMessage,
+costingResourceMask,
+costingResourceUnmask,
+costingResourceDisableTabs,
+costingResourceEnableTabs,
+costingResourceIsValidPositiveInteger,
+costingResourceAddYoutubeVideo,
+costingResourceIsValidPositiveFloat,
+costingResourceRenderChart;
+
 (function ($) {
-   function costingResourceAddErrorMessage($element, error) {
+   costingResourceAddErrorMessage = function ($element, error) {
         $element.parent().find('.error-text').html(error);
-    }
+    };
 
-    function costingResourceMask() {
+    costingResourceMask = function () {
         $("#cm-calculator-div .calculator-tabs").mask("Loading...");
-    }
+    };
 
-    function costingResourceUnmask() {
+    costingResourceUnmask = function () {
         $("#cm-calculator-div .calculator-tabs").unmask();
-    }
+    };
 
-    function costingResourceDisableTabs() {
+    costingResourceDisableTabs = function () {
         $( "#cm-calculator-div" ).tabs( "option", "disabled", [ 1, 2 ] );
         $( "#cm-calculator-div a" )[0].click();
-    }
+    };
 
-    function costingResourceEnableTabs() {
+    costingResourceEnableTabs = function () {
         $( "#cm-calculator-div" ).tabs( "option", "disabled", [] );
-    }
+    };
 
-    function costingResourceIsValidPositiveInteger(str, acceptZero) {
+    costingResourceIsValidPositiveInteger = function (str, acceptZero) {
         acceptZero = acceptZero || false;
 
         str += '';
@@ -31,9 +41,9 @@
             }
         }
         return false;
-    }
+    };
 
-    function costingResourceAddYoutubeVideo(id, youtubeId) {
+    costingResourceAddYoutubeVideo = function (id, youtubeId) {
         $('#' + id).empty();
 
         var $a = $('<a>'),
@@ -49,9 +59,9 @@
         $img.attr('height', 202);
         $a.append($img);
         $('#' + id).append($a);
-    }
+    };
 
-    function costingResourceIsValidPositiveFloat(str, acceptZero) {
+    costingResourceIsValidPositiveFloat = function (str, acceptZero) {
         acceptZero = acceptZero || false;
 
         str += '';
@@ -63,10 +73,10 @@
             }
         }
         return false;
-    }
+    };
 
     // charting
-    function costingResourceRenderChart(id, data) {
+    costingResourceRenderChart = function (id, data) {
         if (data) { 
             chartData = [
                 { cost_type: 'Labour cost' , cost_value: parseFloat(data['labour'])  },
@@ -106,5 +116,6 @@
 
         $('#cm-calculator-div').off('tabsactivate');
         $('#cm-calculator-div').on('tabsactivate', function (e) { chart.write(id); });
-    }
+    };
+    
 } (jQuery));

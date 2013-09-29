@@ -1,11 +1,16 @@
+var costingResourceCuttingCalculatorError,
+costingResourceCuttingCalculatorCalculate,
+costingResourceCuttingCalculatorPopulateData,
+costingResourceCuttingCalculatorValidateData;
+
 (function ($) {
-	function costingResourceCuttingCalculatorError() {
+	costingResourceCuttingCalculatorError = function () {
 		alert('An error occurred while trying to perform the calculation.');
 		costingResourceDisableTabs(); 
 		costingResourceUnmask(); 
-	}
+	};
 
-	function costingResourceCuttingCalculatorCalculate() {
+	costingResourceCuttingCalculatorCalculate = function () {
 		var data = {
 			'material_id': parseInt($('#material_id').val()),
 			'thickness': parseInt($('#thickness').val()),
@@ -34,9 +39,9 @@
 			costingResourceUnmask(); 
 			costingResourceEnableTabs(); 
 		}).error(costingResourceCuttingCalculatorError);
-	}
+	};
 
-	function costingResourceCuttingCalculatorPopulateData(data) {
+	costingResourceCuttingCalculatorPopulateData = function (data) {
 		// process
 		$('#cutting-speed').val(data['cutting_speed']);
 		$('#manipulation-speed').val(data['manipulation_speed']);
@@ -60,9 +65,9 @@
 		costingResourceAddYoutubeVideo('machine_video', data['machine']['youtube']);
 		costingResourceRenderChart('chart', data['costs']);
 		$('#machine-image').attr('src', '/assets/images/' + data['machine']['image']);
-	}
+	};
 
-	function costingResourceCuttingCalculatorValidateData(data) {
+	costingResourceCuttingCalculatorValidateData = function (data) {
 		$('#cm-calculator-div .error-text').html('');
 
 		var $materialId = $('#material_id'),
@@ -106,5 +111,6 @@
 		}
 
 		return validates;
-	}
+	};
+
 } (jQuery));
