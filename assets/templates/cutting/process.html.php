@@ -121,6 +121,6 @@
         </tr>
         <tr>
             <td class="hide-mobile"></td>
-            <td><button id="calculate-button" class="btn-blue">Calculate cycle time</button></td>
+            <td><button id="cutting-calculate-button" class="btn-blue">Calculate cycle time</button></td>
         </tr>
     </table>

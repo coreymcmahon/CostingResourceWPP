@@ -39,8 +39,8 @@
     padding: 6px;
     width: 144px;
 }
-#cm-calculator-div select { background: transparent; border: 0; line-height: 1; cursor: pointer; }
-#cm-calculator-div select {
+#costing_resource_calculator select { background: transparent; border: 0; line-height: 1; cursor: pointer; }
+#costing_resource_calculator select {
     width: 144px;
     height: 27px;
     padding: 2px 6px 2px 6px;

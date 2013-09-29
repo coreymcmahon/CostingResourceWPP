@@ -17,7 +17,7 @@
 <script>
 (function ($) {
     $(function () {
-        $('#calculate-button').on('click', costingResourceCuttingCalculatorCalculate);
+        $('#cutting-calculate-button').on('click', costingResourceCuttingCalculatorCalculate);
         $('#machine-id').on('change', costingResourceCuttingCalculatorCalculate);
         $('#country-id').on('change', costingResourceCuttingCalculatorCalculate);
 

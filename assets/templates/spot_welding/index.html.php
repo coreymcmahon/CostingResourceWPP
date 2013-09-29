@@ -17,7 +17,7 @@
 <script>
 (function ($) {
     $(function () {
-        $('#calculate-button').on('click', costingResourceSpotWeldingCalculatorCalculate);
+        $('#spot-welding-calculate-button').on('click', costingResourceSpotWeldingCalculatorCalculate);
         $('#country_id').on('change', costingResourceSpotWeldingCalculatorCalculate);
 
         $('#clear-button').on('click', function () {

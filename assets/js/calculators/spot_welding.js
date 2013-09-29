@@ -4,13 +4,13 @@ costingResourceSpotWeldingCalculatorPopulateData,
 costingResourceSpotWeldingCalculatorValidateData;
 
 (function ($) {
-	function costingResourceSpotWeldingCalculatorError() {
+	costingResourceSpotWeldingCalculatorError = function () {
 		alert('An error occurred while trying to perform the calculation.');
 		costingResourceDisableTabs(); 
 		costingResourceUnmask();
 	}
 
-	function costingResourceSpotWeldingCalculatorCalculate() {
+	costingResourceSpotWeldingCalculatorCalculate = function () {
 		var data = {
 			'is_robotic': parseInt($('#is_robotic').val()),
 			'number_of_welds': parseInt($('#number_of_welds').val()),
@@ -36,7 +36,7 @@ costingResourceSpotWeldingCalculatorValidateData;
 		}).error(costingResourceSpotWeldingCalculatorError);
 	}
 
-	function costingResourceSpotWeldingCalculatorPopulateData(data) {
+	costingResourceSpotWeldingCalculatorPopulateData = function (data) {
 	data = data['result'];
 		// process
 		$('#loading_unloading').val(data['loading_unloading']);
@@ -64,7 +64,7 @@ costingResourceSpotWeldingCalculatorValidateData;
 		$('#machine_image').attr('src', '/assets/images/' + data['machine']['image']);
 	}
 
-	function costingResourceSpotWeldingCalculatorValidateData(data) {
+	costingResourceSpotWeldingCalculatorValidateData = function (data) {
 		$('#cm-calculator-div .error-text').html('');
 
 		var $isRobotic = $('#is_robotic'),
