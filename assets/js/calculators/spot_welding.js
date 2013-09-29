@@ -61,7 +61,7 @@ costingResourceSpotWeldingCalculatorValidateData;
 
 		costingResourceAddYoutubeVideo('machine_video', data['machine']['video']);
 		costingResourceRenderChart('chart', data['costs']);
-		$('#machine_image').attr('src', '/assets/images/' + data['machine']['image']);
+		$('#machine_image').attr('src', costingResourceAssetUrl + 'images/' + data['machine']['image']);
 	}
 
 	costingResourceSpotWeldingCalculatorValidateData = function (data) {

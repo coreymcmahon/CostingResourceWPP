@@ -64,7 +64,7 @@ costingResourceCuttingCalculatorValidateData;
 
 		costingResourceAddYoutubeVideo('machine_video', data['machine']['youtube']);
 		costingResourceRenderChart('chart', data['costs']);
-		$('#machine-image').attr('src', '/assets/images/' + data['machine']['image']);
+		$('#machine-image').attr('src', costingResourceAssetUrl + 'images/' + data['machine']['image']);
 	};
 
 	costingResourceCuttingCalculatorValidateData = function (data) {
