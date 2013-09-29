@@ -124,10 +124,3 @@
             <td><button id="calculate-button" class="btn-blue">Calculate cycle time</button></td>
         </tr>
     </table>
-    <script>
-    $('#clear-button').on('click', function () {
-        $('#tab1-link').click();
-        costingResourceDisableTabs();
-        $('input.calculator-field').val('');
-    });
-    </script>
