@@ -1,4 +1,4 @@
-function ($) {
+(function ($) {
 	function costingResourceSpotWeldingCalculatorError() {
 		alert('An error occurred while trying to perform the calculation.');
 		costingResourceDisableTabs(); 
@@ -122,4 +122,4 @@ function ($) {
 
 		return validates;
 	}
-} (jQuery);
+} (jQuery));
