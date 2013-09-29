@@ -15,7 +15,7 @@
 
 </div>
 <script>
-    var chart, chartData;
+    var chart, chartData, costingResourceCalculatorData;
 
     (function ($) {
     
@@ -26,7 +26,7 @@
             });
     
             // load data
-            var costingResourceCalculatorData = $.parseJSON('<?php echo json_encode($calculatorData); ?>');
+            costingResourceCalculatorData = $.parseJSON('<?php echo json_encode($calculatorData); ?>');
             $('#costing_resource_calculator_namespace').on('change', function (e) {
                 var namespace = $(e.target).val();
                 $.get('front.php?namespace=' + namespace).success(function(data) {
