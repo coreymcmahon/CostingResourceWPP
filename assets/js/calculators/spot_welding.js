@@ -24,7 +24,7 @@ costingResourceSpotWeldingCalculatorValidateData;
 		costingResourceMask();
 		$.ajax({
 			type: "POST",
-			url: "front.php?action=calculate&namespace=spot_welding",
+			url: costingResourceFrontControllerUrl + "?action=calculate&namespace=spot_welding",
 			data: data
 		}).success(function (data) { 
 			data = $.parseJSON(data); 

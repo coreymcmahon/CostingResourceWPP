@@ -29,7 +29,7 @@ costingResourceCuttingCalculatorValidateData;
 
 		$.ajax({
 			type: "POST",
-			url: "front.php?action=calculate&namespace=cutting",
+			url: costingResourceFrontControllerUrl + "?action=calculate&namespace=cutting",
 			data: data
 		}).success(function (data) { 
 			data = $.parseJSON(data);
