@@ -1,4 +1,4 @@
-
+function ($) {
    function costingResourceAddErrorMessage($element, error) {
         $element.parent().find('.error-text').html(error);
     }
@@ -107,3 +107,4 @@
         $('#cm-calculator-div').off('tabsactivate');
         $('#cm-calculator-div').on('tabsactivate', function (e) { chart.write(id); });
     }
+} (jQuery);

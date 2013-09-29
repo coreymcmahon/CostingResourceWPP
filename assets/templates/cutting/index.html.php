@@ -15,6 +15,7 @@
     </div>
 </div>
 <script>
+function ($) {
     $(function () {
         $('#calculate-button').on('click', costingResourceCuttingCalculatorCalculate);
         $('#machine-id').on('change', costingResourceCuttingCalculatorCalculate);
@@ -26,4 +27,5 @@
             $('input.calculator-field').val('');
         });
     });
+} (jQuery);
 </script>

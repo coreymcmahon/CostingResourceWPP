@@ -39,9 +39,13 @@ function cm_costing_resource_shorttag($atts)
 ?>
         <div id="costing-resource-container"></div>
 		<script>
-		$.get('front.php').success(function (data) {
-			$('#costing-resource-container').html(data);
-		});
+		function ($) {
+			$(function () {
+				$.get('front.php').success(function (data) {
+					$('#costing-resource-container').html(data);
+				});
+			});
+		} (jQuery);
 		</script>
 <?php 
         return ob_get_clean();

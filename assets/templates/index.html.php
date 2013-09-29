@@ -17,18 +17,22 @@
 <script>
     var chart, chartData;
 
-    // tabs
-    $(function() {
-        $( "#cm-calculator-div" ).tabs();
-        costingResourceDisableTabs();
-    });
+    function ($) {
 
-    // load data
-    var costingResourceCalculatorData = $.parseJSON('<?php echo json_encode($calculatorData); ?>');
-    $('#costing_resource_calculator_namespace').on('change', function (e) {
-        var namespace = $(e.target).val();
-        $.get('front.php?namespace=' + namespace).success(function(data) {
-            $('#costing_resource_calculator').html(data);
+        // tabs
+        $(function() {
+            $( "#cm-calculator-div" ).tabs();
+            costingResourceDisableTabs();
         });
-    });
+
+        // load data
+        var costingResourceCalculatorData = $.parseJSON('<?php echo json_encode($calculatorData); ?>');
+        $('#costing_resource_calculator_namespace').on('change', function (e) {
+            var namespace = $(e.target).val();
+            $.get('front.php?namespace=' + namespace).success(function(data) {
+                $('#costing_resource_calculator').html(data);
+            });
+        });
+        
+    } (jQuery);
 </script>

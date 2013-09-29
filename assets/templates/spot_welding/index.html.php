@@ -15,6 +15,7 @@
     </div>
 </div>
 <script>
+function ($) {
     $(function () {
         $('#calculate-button').on('click', costingResourceSpotWeldingCalculatorCalculate);
         $('#country_id').on('change', costingResourceSpotWeldingCalculatorCalculate);
@@ -25,4 +26,5 @@
             $('input.calculator-field').val('');
         });
     });
+} (jQuery);
 </script>
