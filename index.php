@@ -26,6 +26,7 @@ function cm_costing_resource_enqueue_scripts() {
 
     wp_enqueue_style('cm_costing_resource_style_css', plugins_url('assets/css/styles.css', __FILE__));
     wp_enqueue_style('cm_costing_resource_loadmask_css', plugins_url('assets/css/jquery.loadmask.css', __FILE__));
+    wp_enqueue_style('jqueryui.css', plugins_url('assets/css/jquery-ui.css', __FILE__));
 
 }
 
