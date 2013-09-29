@@ -29,7 +29,7 @@
             costingResourceCalculatorData = $.parseJSON('<?php echo json_encode($calculatorData); ?>');
             $('#costing_resource_calculator_namespace').on('change', function (e) {
                 var namespace = $(e.target).val();
-                $.get('<?php echo plugins_url('front.php', __FILE__); ?>?namespace=' + namespace).success(function(data) {
+                $.get(costingResourceFrontControllerUrl + '?namespace=' + namespace).success(function(data) {
                     $('#costing_resource_calculator').html(data);
                 });
             });

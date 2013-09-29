@@ -39,9 +39,10 @@ function cm_costing_resource_shorttag($atts)
 ?>
         <div id="costing-resource-container"></div>
 		<script>
+        var costingResourceFrontControllerUrl = '<?php echo plugins_url('front.php', __FILE__); ?>';
 		(function ($) {
 			$(function () {
-				$.get('<?php echo plugins_url('front.php', __FILE__); ?>').success(function (data) {
+				$.get(costingResourceFrontControllerUrl).success(function (data) {
 					$('#costing-resource-container').html(data);
 				});
 			});
