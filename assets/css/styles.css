@@ -58,6 +58,8 @@
     -webkit-box-sizing: content-box; 
     overflow: hidden;
     background: url('../images/arrow.png') no-repeat right;
+
+    line-height: 1.25em;
 }
 #cm-calculator-div .btn-red, #cm-calculator-div .btn-red:hover {
     background: none !important;

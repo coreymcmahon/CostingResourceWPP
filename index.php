@@ -12,7 +12,8 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 
 /* set up dependencies */
 add_action( 'wp_enqueue_scripts', 'cm_costing_resource_enqueue_scripts' );
-function cm_costing_resource_enqueue_scripts() {
+function cm_costing_resource_enqueue_scripts() 
+{
 
     wp_enqueue_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
     wp_enqueue_script('amcharts', plugins_url('assets/js/amcharts.js', __FILE__));
@@ -31,7 +32,7 @@ function cm_costing_resource_enqueue_scripts() {
 }
 
 /* set up / configure shortcode */
-add_shortcode('costing_resource_calculator', 'cm_costing_resource_shorttag' );
+add_shortcode('costing_resource_calculators', 'cm_costing_resource_shorttag' );
 function cm_costing_resource_shorttag($atts) 
 {
     // only display on single posts / pages
