@@ -30,7 +30,7 @@ To install the plugin, save the folder contents to the following path under your
 ```
 
 
-Note: the following files and folders **should be omitted** when performing the upload: `.git/`, `tests/`, `vendor/`, `.gitignore`, `README.md`, `composer.lock`, `composer.json`, `phpunit.xml`.
+Note: the following files and folders **should be omitted** when performing the upload: `.git/`, `tests/`, `vendor/`, `.gitignore`, `README.md`, `composer.lock`, `composer.json`, `phpunit.xml`. These files are only required during development
 
 
 You should then navigate to the **Plugins** menu in the Wordpress administration dashboard, and click **Activate** next to the cutting calculator in the list.
@@ -55,10 +55,11 @@ front.php     : The "front controller". All requests for the plugin are passed
 index.php     : The Wordpress Plugin metadata file. Creates the shortcode.
 bootstrap.php : The bootstrap file. Responsible for including all dependencies.
 assets/       : The HTML, JavaScript, images and CSS for generating the user 
-                interface for the calculator.
+                interface for the calculators.
 data/         : CSV files that are used for providing the backend data for the 
                 calculations.
-src/          : The source-code for the calculators.
+src/          : The source-code for the calculators and HTTP routing code to 
+                service AJAX requests.
 
 ```
 
@@ -83,11 +84,11 @@ Open the file `src/CostingResource/Settings.php` and add the name and namespace 
 
 
 ### Implement the HTML and JavaScript for the Calculator
-Create the templates in `/assets/templates` as shown in the `cutting` and `spot_welding` examples. Typically you'll create `index.html.php` which is resposible for rendering the outer elements of the tabs, and then three sub-templates that correspond with each of the tabs.
+Create the templates in a new folder in `assets/templates/[calculator-name]` as demonstrated in `assets/templates/cutting` and `assets/templates/spot_welding`. Typically you'll create `index.html.php` which is resposible for rendering the outer elements of the tabs, and then three sub-templates that correspond with each of the tabs.
 
-Calculator specific JavaScript should go in `/assets/js/calculators/[calculator-name]` (this will be automatically included by the plugin), while any event handlers that need to be attached should be done via inline JavaScript in the respective template files. This is so the event handlers are reattached when the form is re-rendered.
+Calculator specific JavaScript should go in `assets/js/calculators/[calculator-name].js` (this will be automatically included by the plugin), while any event handlers that need to be attached should be done via inline JavaScript in the respective template files. This is so the event handlers are reattached when the form is re-rendered.
 
 
 ### Other notes
-Styles go in `/assets/css/styles.css` (no calculator specific stylesheet, just use calculator-specific ID and class attributes). Images can be placed in `/assets/images`.
+Styles go in `assets/css/styles.css` (no calculator specific stylesheet, just use calculator-specific ID and class attributes). Images can be placed in `assets/images`.
 
