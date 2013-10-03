@@ -74,6 +74,10 @@ Create a new folder (and PHP namespace) in `src/CostingResource/` and name it af
 * `CsvData.php`: implements the data retrieval process. See `src/SpotWelding/CsvData.php` and `src/Cutting/CsvData.php` and follow the format used there.
 
 
+### Update the bootstrap.php file
+Any PHP files that you create need to be added to `bootstrap.php`, otherwise they won't be loaded at runtime.
+
+
 ### Add the Calculator to the Settings
 Open the file `src/CostingResource/Settings.php` and add the name and namespace for the new calculator to the list of static variables. Make sure you also add the new calculator to the function `getCalculatorInstanceFor(...)` so that an instance of the new calculator class is returned.
 
