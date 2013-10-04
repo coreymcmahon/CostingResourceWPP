@@ -47,7 +47,7 @@ function cm_costing_resource_shorttag($atts)
 		(function ($) {
 			$(function () {
 				$.get(costingResourceFrontControllerUrl).success(function (data) {
-					$('#costing-resource-container').html(data);
+					$('#costing-resource-container')[0].innerHtml(data);
 				});
 			});
 		} (jQuery));

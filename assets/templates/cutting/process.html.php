@@ -1,7 +1,7 @@
 	<table class="no-top-border">
         <tr class="no-top-border">
             <td class="quarter-width field-label hide-mobile no-top-border">
-                <label for="material">Material</label>
+                <label for="material_id">Material</label>
             </td>
             <td class="field-value no-top-border">
                 <p class="show-mobile mobile-label">Material</p>
