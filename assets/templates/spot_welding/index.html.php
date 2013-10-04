@@ -14,17 +14,3 @@
         <?php include __DIR__ . '/costs.html.php'; ?>
     </div>
 </div>
-<script>
-(function ($) {
-    $(function () {
-        $('#spot-welding-calculate-button').on('click', costingResourceSpotWeldingCalculatorCalculate);
-        $('#country_id').on('change', costingResourceSpotWeldingCalculatorCalculate);
-
-        $('#clear-button').on('click', function () {
-            $('#tab1-link').click();
-            costingResourceDisableTabs();
-            $('input.calculator-field').val('');
-        });
-    });
-} (jQuery));
-</script>

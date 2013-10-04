@@ -6,7 +6,11 @@ costingResourceEnableTabs,
 costingResourceIsValidPositiveInteger,
 costingResourceAddYoutubeVideo,
 costingResourceIsValidPositiveFloat,
-costingResourceRenderChart;
+costingResourceRenderChart,
+costingResourceCalculatorData,
+costingResourceCallback,
+chart,
+chartData;
 
 (function ($) {
    costingResourceAddErrorMessage = function ($element, error) {
@@ -116,6 +120,30 @@ costingResourceRenderChart;
 
         $('#cm-calculator-div').off('tabsactivate');
         $('#cm-calculator-div').on('tabsactivate', function (e) { chart.write(id); });
+    };
+
+    costingResourceCallback = function () {
+        (function ($) {
+    
+            // tabs
+            $(function() {
+                $( "#cm-calculator-div" ).tabs();
+                costingResourceDisableTabs();
+            });
+    
+            // load data
+            //costingResourceCalculatorData = $.parseJSON('<?php echo json_encode($calculatorData); ?>');
+            $('#costing_resource_calculator_namespace').on('change', function (e) {
+                var namespace = $(e.target).val();
+                $.get(costingResourceFrontControllerUrl + '?namespace=' + namespace).success(function(data) {
+                    $('#costing_resource_calculator').get(0).innerHTML = data;
+                    
+                    if (namespace == 'cutting') costingResourceCuttingCalculatorCallback();
+                    if (namespace == 'spot_welding') costingResourceSpotWeldingCalculatorCallback();
+                });
+            });
+            
+        } (jQuery));
     };
     
 } (jQuery));

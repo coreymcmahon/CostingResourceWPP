@@ -14,18 +14,3 @@
         <?php include __DIR__ . '/costs.html.php'; ?>
     </div>
 </div>
-<script>
-(function ($) {
-    $(function () {
-        $('#cutting-calculate-button').on('click', costingResourceCuttingCalculatorCalculate);
-        $('#machine-id').on('change', costingResourceCuttingCalculatorCalculate);
-        $('#country-id').on('change', costingResourceCuttingCalculatorCalculate);
-
-        $('#clear-button').on('click', function () {
-            $('#tab1-link').click();
-            costingResourceDisableTabs();
-            $('input.calculator-field').val('');
-        });
-    });
-} (jQuery));
-</script>

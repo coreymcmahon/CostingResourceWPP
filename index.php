@@ -17,6 +17,7 @@ function cm_costing_resource_enqueue_scripts()
 
     wp_enqueue_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
     wp_enqueue_script('amcharts', plugins_url('assets/js/amcharts.js', __FILE__));
+    wp_enqueue_script('amchartspie', plugins_url('assets/js/pie.js', __FILE__));
     wp_enqueue_script('jqueryui', plugins_url('assets/js/jquery-ui.js', __FILE__));
     wp_enqueue_script('jquery.loadmask', plugins_url('assets/js/jquery.loadmask.min.js', __FILE__));
     wp_enqueue_script('cm_costing_resource_js', plugins_url('assets/js/scripts.js', __FILE__));
@@ -40,15 +41,16 @@ function cm_costing_resource_shorttag($atts)
         ob_start(); 
 ?>
         <div id="costing-resource-container"></div>
-		<script>
+		<script type="text/javascript">
         var costingResourceFrontControllerUrl = '<?php echo plugins_url('front.php', __FILE__); ?>';
         var costingResourceAssetUrl = '<?php echo plugins_url('', __FILE__); ?>/assets/';
 
 		(function ($) {
 			$(function () {
-				$.get(costingResourceFrontControllerUrl).success(function (data) {
-					$('#costing-resource-container')[0].innerHtml(data);
-				});
+                $.get(costingResourceFrontControllerUrl).success(function (data) {
+                    $('#costing-resource-container').get(0).innerHTML = data;
+                    costingResourceCuttingCalculatorCallback();
+                });
 			});
 		} (jQuery));
 		</script>
