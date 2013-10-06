@@ -119,7 +119,10 @@ chartData;
         chart.write(id);
 
         $('#cm-calculator-div').off('tabsactivate');
-        $('#cm-calculator-div').on('tabsactivate', function (e) { chart.write(id); });
+        $('#cm-calculator-div').on('tabsactivate', function (e) {
+            // only draw the chart when tab 3 is selected
+            chart.write(id);
+        });
     };
 
     costingResourceCallback = function () {
